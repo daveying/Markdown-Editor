@@ -21,18 +21,16 @@
 </head>
 <body>
 
-<pre id="editor">function foo(items) {
-    var i;
-    for (i = 0; i &lt; items.length; i++) {
-        alert("Ace Rocks " + items[i]);
-    }
-}</pre>
+<pre id="editor"># Markdown Editor
+This is a markdown editor developed by [Dave Da](https://github.com/daveying).
+You can find source code [here](https://github.com/daveying/Markdown-Editor).
+</pre>
 
 <script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/twilight");
-    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/Chrome");
+    editor.session.setMode("ace/mode/markdown");
 </script>
 
 </body>
