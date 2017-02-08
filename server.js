@@ -40,9 +40,14 @@ app.get('/', function (req, res) {
 })
 
 app.post('/parseMdStr', urlencodedParser, function (req, res) {
-    console.log(req.body.fakeMd);
     var result = md.render(req.body.fakeMd);
     console.log(result);
+    res.write(result, function (err) {
+        if (err) {
+            console.log(err);
+        }
+        res.end();
+    });
 })
 
 var server = app.listen(7888, function () {

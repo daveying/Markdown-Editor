@@ -17,13 +17,13 @@
 This is a markdown editor developed by [Dave Da](https://github.com/daveying).
 You can find source code [here](https://github.com/daveying/Markdown-Editor).
 </pre>
-        <form id="mdStr" name="mdStr" action="/parseMdStr" method="post" style="visibility: hidden">
+        <form id="mdStr" name="mdStr" action="/parseMdStr" method="post" target="preview_frame" style="visibility: hidden">
             <textarea id="fakeMd" name="fakeMd" rows="3" cols="3">
             </textarea>
         </form>
-        <div id="preview" name="preview_frame">
-            <h1>Header</h1>
-            <p>paragraph</p>
+        <div id="preview" >
+            <iframe width="100%" height="100%" name="preview_frame" style="border: none;">
+            </iframe>
         </div>
         <footer class="bg-4">
             <em>Developed by Dave Da(<a href="https://github.com/daveying">https://github.com/daveying</a>). &copy All rights reserved</em>
