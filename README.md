@@ -8,7 +8,7 @@ You can deploy this editor on a remote server or just install on local computer.
 It's very easy to use. Just open the web page and you can edit markdown text at 
 left and you can preview the results at right once you press the button `PREVIEW`.
 You can save the file to local if you press the button `SAVE`(this function is 
-under develeping).
+under develepment).
 
 # How to deploy on local computer
 ## Install Node.js
