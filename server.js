@@ -8,7 +8,8 @@ var urlencodedParser = bodyParser.urlencoded({extended: false});
 var md = new MarkdownIt({
   html: false,
   linkify: true,
-  typographer: true
+  typographer: false,
+  quotes: ""
 });
 
 app.use(express.static('public'));
