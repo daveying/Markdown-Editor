@@ -42,6 +42,7 @@ $ node /path/to/source/code/server.js
 ```
 Then, you can open a browser, and visit [http://127.0.0.1:7888/index.html](http://127.0.0.1:7888/index.html), 
 you can see the editor like this.
+![Markdown Editor](public/pic/markdown_editor.png "This Markdown Editor")
 
 
 # How to deploy on remote server
