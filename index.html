@@ -22,6 +22,7 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).
             <textarea id="fakeMd" name="fakeMd" rows="3" cols="3">
             </textarea>
             <input id="saveOrPreview" type="text" name="saveOrPreview"></input> 
+            <input id="randomName" type = "text" name="randomName"></input>
         </form>
         <div id="preview" >
             <iframe width="100%" height="100%" name="preview_frame" style="border: none;">
@@ -47,6 +48,8 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).
                 document.getElementById('fakeMd').innerHTML = mdStr;
                 console.log(mdStr);
                 document.getElementById('saveOrPreview').value = "save";
+                var d = new Date();
+                document.getElementById('randomName').value = d.getTime().toString() + Math.round((Math.random() * 10000)).toString();
                 document.forms["mdStr"].submit();
             }
         </script>

@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var fs = require('fs');
 
 var bodyParser = require('body-parser');
 var MarkdownIt = require('markdown-it');
@@ -49,11 +50,15 @@ app.post('/parseMdStr', urlencodedParser, function (req, res) {
     var result = md.render(req.body.fakeMd);
     console.log(result);
     if (req.body.saveOrPreview === "save") {
-        res.write(__dirname + "/index.html", function (err) {
-            if (err) {
-                console.log(err);
-            }
-            res.end();
+        var filename = "public/temp_md/" + req.body.randomName + ".md";
+        console.log(filename);
+        fs.writeFile(filename, req.body.fakeMd, function (err) {
+            res.download(filename, function (err) {
+                if (err) {
+                    console.log(err);
+                }
+                res.end();
+            });
         });
     }
     else {
