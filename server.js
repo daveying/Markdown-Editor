@@ -35,20 +35,36 @@ app.get('/public/*', function (req, res) {
 })
 
 app.get('/', function (req, res) {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write('<a href="index.html">Click here to editor page</a>');
-    res.end();
+    //res.writeHead(200, {'Content-Type': 'text/html'});
+    //res.write('<a href="index.html">Click here to editor page</a>');   
+    res.sendFile(__dirname + "/index.html", function (err) {
+        if (err) {
+            console.log(err);
+        }
+        res.end();
+    }); 
 })
 
 app.post('/parseMdStr', urlencodedParser, function (req, res) {
     var result = md.render(req.body.fakeMd);
     console.log(result);
-    res.write(result, function (err) {
-        if (err) {
-            console.log(err);
-        }
-        res.end();
-    });
+    if (req.body.saveOrPreview === "save") {
+        res.write(__dirname + "/index.html", function (err) {
+            if (err) {
+                console.log(err);
+            }
+            res.end();
+        });
+    }
+    else {
+        res.write(result, function (err) {
+            if (err) {
+                console.log(err);
+            }
+            res.end();
+        });
+
+    }
 })
 
 var server = app.listen(7888, function () {
