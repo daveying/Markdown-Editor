@@ -57,13 +57,15 @@ you can see the editor like this.(Yes, you need to specify port 7888 here)
 
 
 # How to deploy on remote server
+
+You need ssh to your remote server, and do this steps on remote server.
+
 ## Install Node.js
 First ssh to your remote server, I think this step will not be a problem once you already have a remote server.
 
 And then, it is the same as install on local. You may need to install it via PPA, and you can google it how to install Node.js on remote server.
 
 ## Download the source code of the editor
-You also need ssh to your remote server.
 
 First make sure you have installed `git` on your remote server, so you can clone the source with a simple command line:
 ```bash
