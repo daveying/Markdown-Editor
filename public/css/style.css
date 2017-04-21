@@ -7,7 +7,7 @@ body {
 #hd {
     margin: 0px;
     padding: 20px 10px;
-    background-color: #1abc9c;
+    background-color: #2f2f2f;
     color: #ffffff;
     vertical-align: center;
 }
@@ -19,8 +19,8 @@ body {
     bottom: 30px;
     left: 0;
     right: 50%;
-    border: 2px solid;
-    border-color: #1abc9c #474e5d #474e5d white;
+    border: 3px solid;
+    border-color: #555666;
 }            
 #preview {
     margin: 0;
@@ -29,8 +29,8 @@ body {
     bottom: 30px;
     left: 50%;
     right: 0;
-    border: 2px solid;
-    border-color: #1abc9c #474e5d #474e5d white;
+    border: 3px solid;
+    border-color: #555666;
     background-color: white;
 }
 
