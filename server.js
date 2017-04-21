@@ -4,13 +4,23 @@ var fs = require('fs');
 
 var bodyParser = require('body-parser');
 var MarkdownIt = require('markdown-it');
+var hljs = require('highlight.js');
 
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 var md = new MarkdownIt({
   html: false,
   linkify: true,
   typographer: false,
-  quotes: ""
+  quotes: "",
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(lang, str).value;
+      } catch (__) {}
+    }
+
+    return ''; // use external default escaping
+  }
 });
 
 app.use(express.static('public'));
@@ -62,7 +72,7 @@ app.post('/parseMdStr', urlencodedParser, function (req, res) {
         });
     }
     else {
-        res.write(result, function (err) {
+        res.write(html_head + result + html_tail, function (err) {
             if (err) {
                 console.log(err);
             }
@@ -78,4 +88,22 @@ var server = app.listen(8880, function () {
 
     console.log("Markdown Editor is openned at: http://%s:%s", host, port);
 })
+
+var html_head = ' \
+<!doctype html><html> \
+  <head> \
+    <meta charset="utf-8"> \
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui"> \
+    <title>Introduction</title> \
+    <link type="text/css" rel="stylesheet" href="public/css/github-markdown.css"> \
+    <link type="text/css" rel="stylesheet" href="public/css/pilcrow.css"> \
+    <link type="text/css" rel="stylesheet" href="public/css/hljs-github.min.css"/> \
+  </head> \
+  <body> \
+    <article class="markdown-body">'
+
+var html_tail = '\
+</article> \
+  </body> \
+</html>'
 
