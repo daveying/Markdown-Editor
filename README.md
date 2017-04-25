@@ -6,8 +6,9 @@ and [markdown-it](https://github.com/markdown-it/markdown-it).
 You can deploy this editor on a remote server or just install on local computer.
 
 It's very easy to use. Just open the web page and you can edit markdown text at 
-left and you can preview the results at right once you press the button `PREVIEW`.
-You can save the file to local if you press the button `SAVE`.
+left and you can preview the results at right once you press the button `Preview`.
+You can save the file to local if you press the button `Save`. Click `Settings`, you 
+can choose the font size of editor, also you can choose the CSS style of preview window.
 
 # How to deploy on local computer
 ## Install Node.js
@@ -90,11 +91,12 @@ By now, you can run the server with Node.js.
 ``` bash
 $ node /path/to/source/code/server.js
 ```
-Then, open a browser, and visit [http://ip_of_your_remote_server](http://ip_of_your_remote_server), you should this editor.
+Then, open a browser, and visit [http://ip_of_your_remote_server](http://ip_of_your_remote_server), you should see this editor.
 
 ### If you have a domain name
-You can add a A record point to ip address of your remote server, and you can using your domain to visit this editor.
+You can add an A record point to ip address of your remote server, and you can using your domain to visit this editor.
 (If the port is not set to 80, you should using a tool called [nginx](https://nginx.org/en/))
 
-You already have a domain name, so you can figure out how to setup this.
+You already have a domain name, so you can figure out how to setup this. Here is the rendering of this web app when visit it via a mobile device.
 
+![Markdown Editor](public/pic/markdown_editor_mobile.png "This Markdown Editor")
