@@ -32,9 +32,9 @@
                         <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Small Font</a></li>
-                            <li><a href="#">Medium Font</a></li>
-                            <li><a href="#">Large Font</a></li>
+                            <li><a href="#" onclick="smFontClieckedHandler()">Small Font</a></li>
+                            <li><a href="#" onclick="mdFontClieckedHandler()">Medium Font</a></li>
+                            <li><a href="#" onclick="lgFontClieckedHandler()">Large Font</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">Github style</a></li>
                             <li><a href="#">Other style</a></li>
@@ -87,10 +87,15 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).</d
             var editor = ace.edit("editor");
             editor.setTheme("ace/theme/chrome");
             editor.session.setMode("ace/mode/markdown");
+            if(localStorage.getItem('md-content')) {
+                editor.setValue(localStorage.getItem('md-content'));
+                editor.gotoLine(1);
+            }
             var previewClickHandler = function () {
                 var mdStr = editor.getValue();
                 document.getElementById('fakeMd').innerHTML = mdStr;
                 console.log(mdStr);
+                localStorage.setItem('md-content', mdStr);
                 document.getElementById('saveOrPreview').value = "preview";
                 document.forms["mdStr"].submit();
             }
@@ -98,13 +103,24 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).</d
                 var mdStr = editor.getValue();
                 document.getElementById('fakeMd').innerHTML = mdStr;
                 console.log(mdStr);
+                localStorage.setItem('md-content', mdStr);
                 document.getElementById('saveOrPreview').value = "save";
                 var d = new Date();
                 document.getElementById('randomName').value = d.getTime().toString() + Math.round((Math.random() * 10000)).toString();
                 document.forms["mdStr"].submit();
             }
-        </script> 
+            var smFontClieckedHandler = function () {
+                document.getElementById('editor').style.fontSize='12px';
+            }
+            var mdFontClieckedHandler = function () {
+                document.getElementById('editor').style.fontSize='16px';
+            }
+            var lgFontClieckedHandler = function () {
+                document.getElementById('editor').style.fontSize='18px';
+            }
+        </script>
         <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>
 </html>
