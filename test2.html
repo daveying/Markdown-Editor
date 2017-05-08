@@ -1,0 +1,32 @@
+<!doctype html><html> 
+  <head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui"> 
+    <title>Introduction</title> 
+    <link type="text/css" rel="stylesheet" href="public/css/github-markdown.css"> 
+    <link type="text/css" rel="stylesheet" href="public/css/pilcrow.css"> 
+    <link type="text/css" rel="stylesheet" href="public/css/hljs-github.min.css"/> 
+  </head> 
+  <body> 
+    <article class="markdown-body">
+        <h1>Markdown Editor</h1>
+<p>This markdown editor is developed by <a href="https://github.com/daveying">Dave Da</a>.</p>
+<p>You can find source code <a href="https://github.com/daveying/Markdown-Editor">here</a>.</p>
+
+<!--<iframe width="100%" height="300" src="https://jsfiddle.net/gkvb4x88/1/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>-->
+<script async src="//jsfiddle.net/gkvb4x88/1/embed/"></script>
+
+</article> 
+  </body> 
+  <script src="node_modules/markdown-it/dist/markdown-it.js"></script>
+  <script>
+    var md = markdownit({
+        html: true,
+        linkify: false,
+        //typographer: false,
+        //quotes: "",
+        highlight: null
+    });
+    console.log(md.render('# hello'));
+  </script>
+</html>

@@ -4,7 +4,6 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1 minimal-ui" />
         <title>Markdown Editor</title>
-        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
         <link rel="stylesheet" href="public/css/flex_style.css" />
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">        <!-- Optional theme -->
@@ -62,11 +61,10 @@
             </nav>
         </header>
         <main id="main-content">
-            <pre id="editor"># Markdown Editor
+            <div id="editor"># Markdown Editor
 This markdown editor is developed by [Dave Da](https://github.com/daveying).
 
-You can find source code [here](https://github.com/daveying/Markdown-Editor).
-</pre>
+You can find source code [here](https://github.com/daveying/Markdown-Editor).</div>
 
             <div id="preview" >
                 <iframe width="100%" height="100%" name="preview_frame" style="border: none;">
@@ -105,8 +103,8 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).
                 document.getElementById('randomName').value = d.getTime().toString() + Math.round((Math.random() * 10000)).toString();
                 document.forms["mdStr"].submit();
             }
-        </script>
-        
+        </script> 
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>
 </html>

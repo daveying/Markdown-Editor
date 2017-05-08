@@ -8,10 +8,10 @@ var hljs = require('highlight.js');
 
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 var md = new MarkdownIt({
-  html: false,
-  linkify: true,
-  typographer: false,
-  quotes: "",
+  html: true,
+  linkify: false,
+  //typographer: false,
+  //quotes: "",
   highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
@@ -43,6 +43,15 @@ app.get('/public/*', function (req, res) {
         res.end();
     }); 
     
+})
+
+app.get('/node_modules/markdown-it/dist/markdown-it.js', function (req, res) {
+    res.sendFile(__dirname + req.url, function (err) {
+        if (err) {
+            console.log(err);
+        }
+        res.end();
+    })
 })
 
 app.get('/', function (req, res) {
