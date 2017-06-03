@@ -34,6 +34,15 @@ app.get('/index.html', function (req, res) {
     }); 
     
 })
+app.get('/test2.html', function (req, res) {
+    res.sendFile(__dirname + req.url, function (err) {
+        if (err) {
+            console.log(err);
+        }
+        res.end();
+    }); 
+    
+})
 
 app.get('/public/*', function (req, res) {
     res.sendFile(__dirname + req.url, function (err) {
@@ -67,7 +76,7 @@ app.get('/', function (req, res) {
 
 app.post('/parseMdStr', urlencodedParser, function (req, res) {
     var result = md.render(req.body.fakeMd);
-    console.log(result);
+    //console.log(result);
     if (req.body.saveOrPreview === "save") {
         var filename = "public/temp_md/" + req.body.randomName + ".md";
         console.log(filename);
@@ -91,7 +100,7 @@ app.post('/parseMdStr', urlencodedParser, function (req, res) {
     }
 })
 
-var server = app.listen(80, function () {
+var server = app.listen(8880, function () {
     var host = server.address().address;
     var port = server.address().port;
 
