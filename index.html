@@ -66,7 +66,7 @@ This markdown editor is developed by [Dave Da](https://github.com/daveying).
 
 You can find source code [here](https://github.com/daveying/Markdown-Editor).</div>
 
-            <div id="preview" >
+            <div id="preview" class="markdown-body">
 
             </div>
         </main>
@@ -103,7 +103,8 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).</d
                 //console.log(mdStr);
                 localStorage.setItem('md-content', mdStr);
                 document.getElementById('saveOrPreview').value = "preview";
-                document.forms["mdStr"].submit();
+                //document.forms["mdStr"].submit();
+                document.getElementById('preview').innerHTML = md.render(mdStr);
             }
             var saveClickHandler = function () {
                 var mdStr = editor.getValue();
