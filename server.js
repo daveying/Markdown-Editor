@@ -62,6 +62,14 @@ app.get('/node_modules/markdown-it/dist/markdown-it.js', function (req, res) {
         res.end();
     })
 })
+app.get('/node_modules/highlight.js/lib/highlight.js', function (req, res) {
+    res.sendFile(__dirname + req.url, function (err) {
+        if (err) {
+            console.log(err);
+        }
+        res.end();
+    })
+})
 
 app.get('/', function (req, res) {
     //res.writeHead(200, {'Content-Type': 'text/html'});
