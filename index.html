@@ -8,6 +8,9 @@
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">        <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link type="text/css" rel="stylesheet" href="public/css/github-markdown.css">
+        <link type="text/css" rel="stylesheet" href="public/css/pilcrow.css">
+        <link type="text/css" rel="stylesheet" href="public/css/hljs-github.min.css"/>
     </head>
     <body>
         <header>
@@ -66,9 +69,9 @@ This markdown editor is developed by [Dave Da](https://github.com/daveying).
 
 You can find source code [here](https://github.com/daveying/Markdown-Editor).</div>
 
-            <div id="preview" >
-                <iframe width="100%" height="100%" name="preview_frame" style="border: none;">
-                </iframe>
+            <div id="preview">
+                <div id="markdown-div" class="markdown-body">
+                </div>
             </div>
         </main>
         <footer class="bg-4">
@@ -76,14 +79,33 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).</d
                 <em>Developed by Dave Da(<a href="https://github.com/daveying">https://github.com/daveying</a>). &copy 2017</em>
             </div>
         </footer>
-        <form id="mdStr" name="mdStr" action="/parseMdStr" method="post" target="preview_frame" style="visibility: hidden">
+        <form id="mdStr" name="mdStr" action="/parseMdStr" method="post" target="_blank" style="visibility: hidden">
             <textarea id="fakeMd" name="fakeMd" rows="3" cols="3">
             </textarea>
             <input id="saveOrPreview" type="text" name="saveOrPreview"></input> 
             <input id="randomName" type = "text" name="randomName"></input>
         </form>
         <script src="public/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="node_modules/markdown-it/dist/markdown-it.js"></script>
+        <script src="public/highlight.js/highlight.pack.js"></script>
         <script>
+            var languageOverrides = {
+                js: 'javascript',
+                html: 'xml'
+            };
+            var md = markdownit({
+                html: true,
+                linkify: false,
+                highlight: function(code, lang) {
+                    if(languageOverrides[lang]) lang = languageOverrides[lang];
+                    if(lang && hljs.getLanguage(lang)){
+                        try {
+                            return hljs.highlight(lang, code).value;;
+                        }catch(e){}
+                    }
+                    return '';
+                }
+            });
             var editor = ace.edit("editor");
             editor.setTheme("ace/theme/chrome");
             editor.session.setMode("ace/mode/markdown");
@@ -95,15 +117,16 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).</d
             var previewClickHandler = function () {
                 var mdStr = editor.getValue();
                 document.getElementById('fakeMd').innerHTML = mdStr;
-                console.log(mdStr);
+                //console.log(mdStr);
                 localStorage.setItem('md-content', mdStr);
                 document.getElementById('saveOrPreview').value = "preview";
-                document.forms["mdStr"].submit();
+                //document.forms["mdStr"].submit();
+                document.getElementById('markdown-div').innerHTML = md.render(mdStr);
             }
             var saveClickHandler = function () {
                 var mdStr = editor.getValue();
                 document.getElementById('fakeMd').innerHTML = mdStr;
-                console.log(mdStr);
+                //console.log(mdStr);
                 localStorage.setItem('md-content', mdStr);
                 document.getElementById('saveOrPreview').value = "save";
                 var d = new Date();
@@ -119,6 +142,21 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).</d
             var lgFontClieckedHandler = function () {
                 document.getElementById('editor').style.fontSize='18px';
             }
+            editor.getSession().on('change', function(e) {
+                var mdStr = editor.getValue();
+                var markdownDiv = document.getElementById('markdown-div');
+                var previewDiv = document.getElementById('preview');
+                var old = markdownDiv.cloneNode(true);
+                markdownDiv.innerHTML = md.render(mdStr);
+
+                var allold = old.getElementsByTagName("*");
+                var allnew = markdownDiv.getElementsByTagName("*");
+                for(var i = 0, max = Math.min(allold.length, allnew.length); i < max; i++) {
+                    if(!allold[i].isEqualNode(allnew[i])) {
+                        previewDiv.scrollTop = allnew[i].offsetTop;
+                    }
+                }
+            });
         </script>
         <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 
