@@ -53,7 +53,7 @@ app.get('/favicon.ico', function (req, res) {
     }); 
     
 })
-app.get('/logo-transparent*.png', function (req, res) {
+app.get('/logo/logo-transparent*.png', function (req, res) {
     res.sendFile(__dirname + req.url, function (err) {
         if (err) {
             console.log(err);
