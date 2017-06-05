@@ -9,6 +9,10 @@ body {
     
 }
 
+#my-logo {
+    padding: 2px 10px;
+}
+
 #main-content {
     margin: 0;
     position: absolute;

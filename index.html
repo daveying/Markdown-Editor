@@ -18,6 +18,7 @@
             <nav class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
+                    
                     <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -25,13 +26,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+                    <a class="navbar-brand" id="my-logo" href="http://david.xpda.me">
+                        <img id="my-logo-img" src="logo-transparent.png" alt="logo" />
+                    </a>
                     <a class="navbar-brand" href="https://github.com/daveying/Markdown-Editor">Markdown-Editor</a>
                     </div>
-
+                    
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active2"><a href="#" onclick="previewClickHandler()">Preview <span class="sr-only">(current)</span></a></li>
+                        <li class="active2"><a href="#" onclick="previewClickHandler()">Cache <span class="sr-only">(current)</span></a></li>
                         <li><a href="#" onclick="saveClickHandler()">Save</a></li>
                         <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
@@ -188,6 +192,16 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).</d
                     editor.getSession().setUseWrapMode(false);
                     editor.getSession().setUseWrapMode(true);
                 }
+            }
+
+            // logo change
+            var logoA = document.getElementById('my-logo');
+            var logoImg = document.getElementById('my-logo-img');
+            logoA.onmouseover = function (event) {
+                logoImg.src = "logo-transparent-white.png";
+            }
+            logoA.onmouseout = function (event) {
+                logoImg.src = "logo-transparent.png";
             }
         </script>
         <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
