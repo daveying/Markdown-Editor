@@ -160,7 +160,7 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).</d
             });
 
             //resize window
-            flag = false;
+            var flag = false;
             var draggerDiv = document.getElementById("dragger");
             var editorDiv = document.getElementById("editor");
             var previewDiv = document.getElementById("preview");
@@ -177,11 +177,16 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).</d
                     var h = document.body.scrollHeight;
                     var x = event.clientX;
                     var y = event.clientY;
-                    editorDiv['flex'] = `${x / w}`;
-                    editorDiv['-webkit-flex'] = `${x / w}`;
-                    previewDiv['flex'] = `${1- x / w}`;
-                    previewDiv['-webkit-flex'] = `${1- x / w}`;
-                    console.log(w, h, x, y, editorDiv['flex'], previewDiv['flex']);
+                    editorDiv.style['flex'] = `${x / w}`;
+                    editorDiv.style['-webkit-flex'] = `${x / w}`;
+                    previewDiv.style['flex'] = `${1- x / w}`;
+                    previewDiv.style['-webkit-flex'] = `${1- x / w}`;
+                    
+                    // when the size of editor div changes, 
+                    // ace wrap point will not be updated, 
+                    // so switch on wrap mode again to solve this problem
+                    editor.getSession().setUseWrapMode(false);
+                    editor.getSession().setUseWrapMode(true);
                 }
             }
         </script>
