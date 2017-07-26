@@ -114,6 +114,7 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).</d
             var editor = ace.edit("editor");
             editor.setTheme("ace/theme/chrome");
             editor.session.setMode("ace/mode/markdown");
+            editor.container.style.lineHeight = 1.5;
             editor.getSession().setUseWrapMode(true);
             if(localStorage.getItem('md-content')) {
                 editor.setValue(localStorage.getItem('md-content'));
