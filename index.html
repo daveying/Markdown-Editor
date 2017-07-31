@@ -199,32 +199,35 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).</d
             })();
             
 
-            //resize window
-            var flag = false;
-            var draggerDiv = document.getElementById("dragger");
-            var editorDiv = document.getElementById("editor");
-            var previewDiv = document.getElementById("preview");
-            draggerDiv.onmousedown = function (event) {
-                flag = true;
-            }
-            document.onmouseup = function (event) {
-                flag = false;
-            }
-            document.onmousemove = function (event) {
-                if (!event) event = window.event;
-                if (flag) {
-                    var w = document.body.scrollWidth;
-                    var h = document.body.scrollHeight;
-                    var x = event.clientX;
-                    var y = event.clientY;
-                    editorDiv.style['flex'] = `${x / w}`;
-                    editorDiv.style['-webkit-flex'] = `${x / w}`;
-                    previewDiv.style['flex'] = `${1- x / w}`;
-                    previewDiv.style['-webkit-flex'] = `${1- x / w}`;
-                    
-                    editorModule.updateWrapLine();
+            var windowModule = (function () {
+                //resize window
+                var flag = false;
+                var draggerDiv = document.getElementById("dragger");
+                var editorDiv = document.getElementById("editor");
+                var previewDiv = document.getElementById("preview");
+                draggerDiv.onmousedown = function (event) {
+                    flag = true;
                 }
-            }
+                document.onmouseup = function (event) {
+                    flag = false;
+                }
+                document.onmousemove = function (event) {
+                    if (!event) event = window.event;
+                    if (flag) {
+                        var w = document.body.scrollWidth;
+                        var h = document.body.scrollHeight;
+                        var x = event.clientX;
+                        var y = event.clientY;
+                        editorDiv.style['flex'] = `${x / w}`;
+                        editorDiv.style['-webkit-flex'] = `${x / w}`;
+                        previewDiv.style['flex'] = `${1- x / w}`;
+                        previewDiv.style['-webkit-flex'] = `${1- x / w}`;
+                        
+                        editorModule.updateWrapLine();
+                    }
+                }
+            })();
+            
 
             var logoCtrl = (function () {
                 // logo change
