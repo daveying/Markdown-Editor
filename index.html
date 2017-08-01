@@ -205,6 +205,7 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).</d
                 var draggerDiv = document.getElementById("dragger");
                 var editorDiv = document.getElementById("editor");
                 var previewDiv = document.getElementById("preview");
+                var mainContentDiv = document.getElementById('main-content');
                 draggerDiv.onmousedown = function (event) {
                     flag = true;
                 }
@@ -214,14 +215,20 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).</d
                 document.onmousemove = function (event) {
                     if (!event) event = window.event;
                     if (flag) {
-                        var w = document.body.scrollWidth;
-                        var h = document.body.scrollHeight;
-                        var x = event.clientX;
-                        var y = event.clientY;
-                        editorDiv.style['flex'] = `${x / w}`;
-                        editorDiv.style['-webkit-flex'] = `${x / w}`;
-                        previewDiv.style['flex'] = `${1- x / w}`;
-                        previewDiv.style['-webkit-flex'] = `${1- x / w}`;
+                        var draggerRect = draggerDiv.getBoundingClientRect();
+                        var editorRect = editorDiv.getBoundingClientRect();
+                        var previewRect = previewDiv.getBoundingClientRect();
+                        var c1, c2;
+                        //if (mainContentDiv.style['flex-flow'] === 'row') {
+                            c1 = event.clientX - draggerRect.width / 2 - editorRect.left; // #editor width
+                            c2 = previewRect.right - draggerRect.width / 2 - event.clientX; // #preview width
+                        //}
+                        console.log(editorRect, draggerRect, previewRect);
+                        console.log(event.clientX, event.clientY, c1, c2, c1 + draggerRect.width + c2);
+                        editorDiv.style['flex'] = 1;
+                        editorDiv.style['-webkit-flex'] = 1;
+                        previewDiv.style['flex'] = 2;
+                        previewDiv.style['-webkit-flex'] = 2;
                         
                         editorModule.updateWrapLine();
                     }
