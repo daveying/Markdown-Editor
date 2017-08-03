@@ -218,7 +218,7 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).</d
                         var draggerRect = draggerDiv.getBoundingClientRect();
                         var editorRect = editorDiv.getBoundingClientRect();
                         var previewRect = previewDiv.getBoundingClientRect();
-                        var c1, c2;
+                        var c1, c2, comp = 1;                        
                         if (document.body.clientWidth > 767) {
                             c1 = event.clientX - draggerRect.width / 2 - editorRect.left; // #editor width
                             c2 = previewRect.right - draggerRect.width / 2 - event.clientX; // #preview width
@@ -228,8 +228,8 @@ You can find source code [here](https://github.com/daveying/Markdown-Editor).</d
                         }
                         console.log(editorRect, draggerRect, previewRect);
                         console.log(event.clientX, event.clientY, c1, c2, c1 + draggerRect.width + c2);
-                        editorDiv.style['flex'] = c1 / (c1 + c2);
-                        editorDiv.style['-webkit-flex'] = c1 / (c1 + c2);
+                        editorDiv.style['flex'] = (c1 * comp) / (c1 * comp + c2);
+                        editorDiv.style['-webkit-flex'] = (c1 * comp) / (c1 * comp + c2);
                         previewDiv.style['flex'] = c2 / (c1 + c2);
                         previewDiv.style['-webkit-flex'] = c2 / (c1 + c2);
                         
